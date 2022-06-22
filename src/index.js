@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import {  blueFood, stateControl, superWater } from './js/script.js';
+import {  blueFood, stateControl, superWater, ledLight } from './js/script.js';
 
 
 $(document).ready(function() {
@@ -19,6 +19,11 @@ $(document).ready(function() {
       $('#state-value').hide();
       $('#water-value').text(`Water: ${newState.water}`);
     });
+    $('#light').click(function() {
+      const newState = stateControl(ledLight);
+      $('#state-value').hide();
+      $('#light-value').text(`Light: ${newState.light}`);
+    });
   
   // This function doesn't actually do anything useful in this application - it just demonstrates how we can "look" at the current state (which the DOM is holding anyway). However, students often do need the ability to see the current state without changing it so it's included here for reference.
   
@@ -26,6 +31,6 @@ $(document).ready(function() {
       // We just need to call stateControl() without arguments to see our current state.
       const currentState = stateControl();
       $('#state-value').show();
-      $('#state-value').text("Total: " + (currentState.soil + currentState.water));
+      $('#state-value').text("Total: " + (currentState.soil + currentState.water + currentState.light));
     });
   });
